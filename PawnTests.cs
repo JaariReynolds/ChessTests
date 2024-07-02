@@ -18,16 +18,11 @@ namespace ChessTests
             gameboard.SetTestBoard(6, 0, pawn);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
+            var expected = new List<Action>
             {
-                {
-                    pawn,
-                    new List<Action> {
-                        new Action(4, 0, ActionType.PawnDoubleMove),
-                        new Action(5, 0, ActionType.Move)
-                    }.OrderBy(a => a.ToString()).ToList()
-                }
-            };
+                new Action(pawn, 4, 0, ActionType.PawnDoubleMove),
+                new Action(pawn, 5, 0, ActionType.Move)
+            }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -61,13 +56,7 @@ namespace ChessTests
             gameboard.SetTestBoard(5, 1, pawn);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> { new Action(4, 1, ActionType.Move) }
-                }
-            };
+            var expected = new  List<Action> { new Action(pawn, 4, 1, ActionType.Move) };
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -105,17 +94,13 @@ namespace ChessTests
             gameboard.SetTestBoard(3, 3, blackPawn2);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
+            var expected = new List<Action>
             {
-                {
-                    pawn,
-                    new List<Action> {
-                        new Action(3, 1, ActionType.Capture),
-                        new Action(3, 3, ActionType.Capture),
-                        new Action(3, 2, ActionType.Move)
-                    }.OrderBy(a => a.ToString()).ToList()
-                }
-            };
+                new Action(pawn, 3, 1, ActionType.Capture),
+                new Action(pawn, 3, 3, ActionType.Capture),
+                new Action(pawn, 3, 2, ActionType.Move)
+            }.OrderBy(a => a.ToString()).ToList();
+                
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -136,13 +121,8 @@ namespace ChessTests
             gameboard.SetTestBoard(0, 2, friendlyPawn2);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> { new Action(0, 1, ActionType.PawnPromote) }
-                }
-            };
+            var expected = new List<Action> { new Action(pawn, 0, 1, ActionType.PawnPromote) };
+      
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -163,28 +143,14 @@ namespace ChessTests
             gameboard.SetTestBoard(0, 2, blackPawn2);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> {
-                        new Action(0, 0, ActionType.PawnPromote),
-                        new Action(0, 2, ActionType.PawnPromote),
-                        new Action(0, 1, ActionType.PawnPromote)
-                    }.OrderBy(a => a.ToString()).ToList()
-                }
-            };
-
+            var expected = new List<Action> {
+                new Action(pawn, 0, 0, ActionType.PawnPromote),
+                new Action(pawn, 0, 2, ActionType.PawnPromote),
+                new Action(pawn, 0, 1, ActionType.PawnPromote)
+            }.OrderBy(a => a.ToString()).ToList();
+               
             Assert.Equal(expected, gameboard.CurrentTeamActions);
-
         }
-
-        [Fact]
-        public void PawnWhiteEnPassant()
-        {
-
-        }
-
 
         /// <summary>
         /// A black pawn can advance 1 or 2 squares as their first action
@@ -199,17 +165,11 @@ namespace ChessTests
             gameboard.SetTestBoard(1, 0, pawn);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> {
-                        new Action(2, 0, ActionType.Move),
-                        new Action(3, 0, ActionType.PawnDoubleMove)
-                    }.OrderBy(a => a.ToString()).ToList()
-                }
-            };
-
+            var expected = new List<Action> {
+                new Action(pawn, 2, 0, ActionType.Move),
+                new Action(pawn, 3, 0, ActionType.PawnDoubleMove)
+            }.OrderBy(a => a.ToString()).ToList();
+                
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
 
@@ -244,13 +204,7 @@ namespace ChessTests
             gameboard.SetTestBoard(5, 1, pawn);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> { new Action(6, 1, ActionType.Move) }
-                }
-            };
+            var expected = new List<Action> { new Action(pawn, 6, 1, ActionType.Move) };
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -287,20 +241,14 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(4, 2, pawn);
             gameboard.SetTestBoard(5, 1, whitePawn1);
-            gameboard.SetTestBoard(5, 3, whitePawn1);
+            gameboard.SetTestBoard(5, 3, whitePawn2);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> {
-                        new Action(5, 1, ActionType.Capture),
-                        new Action(5, 3, ActionType.Capture),
-                        new Action(5, 2, ActionType.Move)
-                    }.OrderBy(a => a.ToString()).ToList()
-                }
-            };
+            var expected = new List<Action> {
+                new Action(pawn, 5, 1, ActionType.Capture),
+                new Action(pawn, 5, 3, ActionType.Capture),
+                new Action(pawn, 5, 2, ActionType.Move),
+            }.OrderBy(a => a.ToString()).ToList();           
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -320,17 +268,11 @@ namespace ChessTests
             gameboard.SetTestBoard(4, 2, friendlyPawn1);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> { new Action(4, 3, ActionType.Move) }
-                },
-                {
-                    friendlyPawn1,
-                    new List<Action> { new Action(5, 2, ActionType.Move) }
-                }
-            };
+            var expected = new List<Action> 
+            { 
+                new Action(pawn, 4, 3, ActionType.Move), 
+                new Action(friendlyPawn1, 5, 2, ActionType.Move) 
+            }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
@@ -352,18 +294,12 @@ namespace ChessTests
             gameboard.SetTestBoard(7, 2, blackPawn2);
             gameboard.CalculateCurrentTeamActions();
 
-            var expected = new Dictionary<Piece, List<Action>>
-            {
-                {
-                    pawn,
-                    new List<Action> {
-                        new Action(7, 0, ActionType.PawnPromote),
-                        new Action(7, 2, ActionType.PawnPromote),
-                        new Action(7, 1, ActionType.PawnPromote)
-                    }.OrderBy(a => a.ToString()).ToList()
-                }
-            };
-
+            var expected = new List<Action> {
+                new Action(pawn, 7, 0, ActionType.PawnPromote),
+                new Action(pawn, 7, 2, ActionType.PawnPromote),
+                new Action(pawn, 7, 1, ActionType.PawnPromote)
+            }.OrderBy(a => a.ToString()).ToList();
+               
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
     }
