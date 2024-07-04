@@ -152,6 +152,13 @@ namespace ChessTests
             Assert.Equal(expected, gameboard.CurrentTeamActions);
         }
 
+        [Fact]
+        public void PawnWhiteEnPassant()
+        {
+            // not yet implemented as performing an action on a gameboard not yet implemented
+            Assert.True(false);
+        }
+
         /// <summary>
         /// A black pawn can advance 1 or 2 squares as their first action
         /// </summary>
@@ -301,6 +308,13 @@ namespace ChessTests
             }.OrderBy(a => a.ToString()).ToList();
                
             Assert.Equal(expected, gameboard.CurrentTeamActions);
+        }
+
+        [Fact]
+        public void PawnBlackEnPassant()
+        {
+            // not yet implemented as performing an action on a gameboard not yet implemented
+            Assert.True(false);
         }
     }
 }
