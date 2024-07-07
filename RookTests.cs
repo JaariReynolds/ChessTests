@@ -12,7 +12,6 @@ namespace ChessTests
 {
     public class RookTests
     {
-        
         /// <summary>
         /// A rook can move infinitely vertically and horizontally with no obstructions
         /// </summary>
@@ -57,7 +56,7 @@ namespace ChessTests
 
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
-            gameboard.CalculateCurrentTeamActions();
+                gameboard.CalculateCurrentTeamActions();
 
             var expected = new List<Action>
             {
