@@ -1,5 +1,6 @@
 using Chess;
 using Chess.Classes;
+using Chess.Types;
 
 namespace ChessTests
 {

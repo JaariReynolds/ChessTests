@@ -1,6 +1,7 @@
 ﻿using Chess;
 using Chess.Classes;
 using Chess.Classes.ConcretePieces;
+using Chess.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace ChessTests
         [Fact]
         public void RookWhiteMove()
         {
-            var gameboard = new Gameboard();
+            var gameboard = new Gameboard(); 
             var rook = new Rook(TeamColour.White, 3, 3);
 
             gameboard.SetTestBoard(3, 3, rook);
