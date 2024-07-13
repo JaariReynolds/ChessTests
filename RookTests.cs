@@ -1,12 +1,6 @@
-﻿using Chess;
-using Chess.Classes;
+﻿using Chess.Classes;
 using Chess.Classes.ConcretePieces;
 using Chess.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChessTests
 {
@@ -18,11 +12,11 @@ namespace ChessTests
         [Fact]
         public void RookWhiteMove()
         {
-            var gameboard = new Gameboard(); 
+            var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.White, 3, 3);
 
             gameboard.SetTestBoard(3, 3, rook);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -42,7 +36,7 @@ namespace ChessTests
                 new Action(rook, 7, 3, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.WhiteActions);
         }
 
         /// <summary>
@@ -56,7 +50,7 @@ namespace ChessTests
 
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
-                gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
@@ -76,14 +70,14 @@ namespace ChessTests
                 new Action(rook, 7, 3, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.BlackActions);
         }
 
         /// <summary>
         /// A rook should be blocked from moving past a friendly obstruction to the North
         /// </summary>
         [Fact]
-        public void RookObstructionNorth()
+        public void RookWhiteObstructionNorth()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.White, 3, 3);
@@ -91,7 +85,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(1, 3, friendlyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -110,14 +104,14 @@ namespace ChessTests
                 new Action(friendlyPawn, 0, 3, ActionType.PawnPromote)
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.WhiteActions);
         }
 
         /// <summary>
         /// A rook should be blocked from moving past a friendly obstruction to the South
         /// </summary>
         [Fact]
-        public void RookObstructionSouth()
+        public void RookWhiteObstructionSouth()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.White, 3, 3);
@@ -125,7 +119,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(4, 3, friendlyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -141,14 +135,14 @@ namespace ChessTests
                 new Action(rook, 3, 7, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.WhiteActions);
         }
 
         /// <summary>
         /// A rook should be blocked from moving past a friendly obstruction to the East
         /// </summary>
         [Fact]
-        public void RookObstructionEast()
+        public void RookBlackObstructionEast()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.Black, 3, 3);
@@ -157,7 +151,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(3, 4, friendlyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
@@ -174,14 +168,14 @@ namespace ChessTests
                 new Action(friendlyPawn, 4, 4, ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.BlackActions);
         }
 
         /// <summary>
         /// A rook should be blocked from moving past a friendly obstruction to the West
         /// </summary>
         [Fact]
-        public void RookObstructionWest()
+        public void RookBlackObstructionWest()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.Black, 3, 3);
@@ -190,7 +184,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(3, 1, friendlyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
@@ -209,14 +203,14 @@ namespace ChessTests
                 new Action(friendlyPawn, 4, 1, ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.BlackActions);
         }
 
         /// <summary>
         /// A rook should be able to capture an enemy piece to the North and not move past it
         /// </summary>
         [Fact]
-        public void RookCaptureNorth()
+        public void RookBlackCaptureNorth()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.Black, 3, 3);
@@ -225,7 +219,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(2, 3, enemyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
@@ -243,14 +237,14 @@ namespace ChessTests
                 new Action(rook, 3, 7, ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.BlackActions);
         }
 
         /// <summary>
         /// A rook should be able to capture an enemy piece to the South and not move past it
         /// </summary>
         [Fact]
-        public void RookCaptureSouth()
+        public void RookBlackCaptureSouth()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.Black, 3, 3);
@@ -259,7 +253,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(4, 3, enemyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
@@ -276,14 +270,14 @@ namespace ChessTests
                 new Action(rook, 3, 7, ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.BlackActions);
         }
 
         /// <summary>
         /// A rook should be able to capture an enemy piece to the East and not move past it
         /// </summary>
         [Fact]
-        public void RookCaptureEast()
+        public void RookWhiteCaptureEast()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.White, 3, 3);
@@ -291,7 +285,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(3, 4, enemyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -308,14 +302,14 @@ namespace ChessTests
                 new Action(rook, 3, 2, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.WhiteActions);
         }
 
         /// <summary>
         /// A rook should be able to capture an enemy piece to the West and not move past it
         /// </summary>
         [Fact]
-        public void RookCaptureWest()
+        public void RookWhiteCaptureWest()
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.White, 3, 3);
@@ -323,7 +317,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(3, 1, enemyPawn);
-            gameboard.CalculateCurrentTeamActions();
+            gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -342,7 +336,7 @@ namespace ChessTests
                 new Action(rook, 3, 7, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.CurrentTeamActions);
+            Assert.Equal(expected, gameboard.WhiteActions);
         }
 
     }
