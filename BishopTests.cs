@@ -16,7 +16,7 @@ namespace ChessTests
             var bishop = new Bishop(TeamColour.White, 3, 3);
 
             gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -35,7 +35,7 @@ namespace ChessTests
                 new Action(bishop, 0, 6, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace ChessTests
 
             gameboard.SwapTurns();
             gameboard.SetTestBoard(4, 3, bishop);
-            gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
@@ -68,7 +68,7 @@ namespace ChessTests
                 new Action(bishop, 0, 7, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.BlackActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace ChessTests
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(1, 1, friendlyPawn1);
             gameboard.SetTestBoard(2, 2, friendlyPawn2);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -103,7 +103,7 @@ namespace ChessTests
                 new Action(friendlyPawn1, 0, 1, ActionType.PawnPromote)
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(1, 5, friendlyPawn1);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -136,7 +136,7 @@ namespace ChessTests
                 new Action(friendlyPawn1, 0, 5, ActionType.PawnPromote),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace ChessTests
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(5, 1, friendlyPawn1);
             gameboard.SetTestBoard(4, 2, friendlyPawn2);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -171,7 +171,7 @@ namespace ChessTests
                 new Action(friendlyPawn1, 4, 1, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(6, 6, friendlyPawn1);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -205,7 +205,7 @@ namespace ChessTests
                 new Action(friendlyPawn1, 4, 6, ActionType.PawnDoubleMove),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(1, 1, enemyPawn);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -238,7 +238,7 @@ namespace ChessTests
                 new Action(bishop, 0, 6, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(2, 4, enemyKnight);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -270,7 +270,7 @@ namespace ChessTests
                 new Action(bishop, 2, 4, ActionType.Capture),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(6, 0, enemyRook);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -304,7 +304,7 @@ namespace ChessTests
                 new Action(bishop, 0, 6, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, bishop);
             gameboard.SetTestBoard(5, 5, enemyBishop);
-            gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
@@ -336,7 +336,7 @@ namespace ChessTests
                 new Action(bishop, 0, 6, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
-            Assert.Equal(expected, gameboard.WhiteActions);
+            Assert.Equal(expected, actual);
         }
     }
 }
