@@ -79,12 +79,10 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var bishop = new Bishop(TeamColour.White, 3, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 1, 1);
-            var friendlyPawn2 = new Pawn(TeamColour.White, 2, 2);
+            var friendlyPawn1 = new Pawn(TeamColour.White, 2, 2);
 
             gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(1, 1, friendlyPawn1);
-            gameboard.SetTestBoard(2, 2, friendlyPawn2);
+            gameboard.SetTestBoard(2, 2, friendlyPawn1);
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
@@ -99,8 +97,7 @@ namespace ChessTests
                 new Action(bishop, 4, 2, ActionType.Move),
                 new Action(bishop, 5, 1, ActionType.Move),
                 new Action(bishop, 6, 0, ActionType.Move),
-                new Action(friendlyPawn2, 1, 2, ActionType.Move),
-                new Action(friendlyPawn1, 0, 1, ActionType.PawnPromote)
+                new Action(friendlyPawn1, 1, 2, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -113,27 +110,26 @@ namespace ChessTests
         public void BishopObstructionNorthEast()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 1, 5);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var friendlyPawn1 = new Pawn(TeamColour.White, "e6");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(1, 5, friendlyPawn1);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(friendlyPawn1);
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Move),
-                new Action(friendlyPawn1, 0, 5, ActionType.PawnPromote),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(friendlyPawn1, "e7", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);

@@ -101,7 +101,10 @@ namespace ChessTests
                 new Action(rook, 3, 5, ActionType.Move),
                 new Action(rook, 3, 6, ActionType.Move),
                 new Action(rook, 3, 7, ActionType.Move),
-                new Action(friendlyPawn, 0, 3, ActionType.PawnPromote)
+                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteKnight),
+                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteBishop),
+                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteRook),
+                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteQueen)
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
