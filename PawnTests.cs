@@ -163,12 +163,96 @@ namespace ChessTests
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// A white pawn can en passant capture an enemy pawn if they had just double moved out of square they would have otherwise been capturable from
+        /// </summary>
         [Fact]
         public void PawnWhiteEnPassant()
         {
-            // not yet implemented as performing an action on a gameboard not yet implemented
-            Assert.True(false);
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.White, "f5");
+            var enemyPawn = new Pawn(TeamColour.Black, "e5");
+            var previousAction = new Action(enemyPawn, "e5", ActionType.PawnDoubleMove);
+
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn);
+            gameboard.AddActionToHistory(previousAction);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+
+            var expected = new List<Action>
+            {
+                new Action(pawn, "f6", ActionType.Move),
+                new Action(pawn, "e6", ActionType.PawnEnPassant)
+            }.OrderBy(a => a.ToString()).ToList();
+
+            Assert.Equal(expected, actual);
         }
+
+        /// <summary>
+        /// A white pawn should not be able to en passant capture an enemy pawn if the previous action was not a double move from that pawn
+        /// </summary>
+        [Fact]
+        public void PawnWhiteEnPassantNotAvailable1()
+        {
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.White, "f5");
+            var enemyPawn = new Pawn(TeamColour.Black, "e5");
+
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var expected = new List<Action> { new Action(pawn, "f6", ActionType.Move) };
+
+            Assert.Equal(expected, actual);
+        }
+
+        /// <summary>
+        /// A white pawn should not be able to en passant capture an enemy pawn (in the correct en passant position) if a DIFFERENT enemy pawn performed the double move
+        /// </summary>
+        [Fact]
+        public void PawnWhiteEnPassantNotAvailable2()
+        {
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.White, "b5");
+            var enemyPawn1 = new Pawn(TeamColour.Black, "a5");
+            var enemyPawn2 = new Pawn(TeamColour.Black, "g5");
+            var previousAction = new Action(enemyPawn2, "g5", ActionType.PawnDoubleMove);
+
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn1);
+            gameboard.Board.SetSquare(enemyPawn2);
+            gameboard.AddActionToHistory(previousAction);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var expected = new List<Action> { new Action(pawn, "b6", ActionType.Move) };
+
+            Assert.Equal(expected, actual);
+        }
+
+        /// <summary>
+        /// A white pawn should not be able to en passant capture an enemy pawn outside of the double move zone (even if the previous action was somehow a double move - (not legal))
+        /// </summary>
+        [Fact]
+        public void PawnWhiteEnPassantNotAvailable3()
+        {
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.White, "e4");
+            var enemyPawn = new Pawn(TeamColour.Black, "d4");
+
+            var previousAction = new Action(enemyPawn, "d4", ActionType.PawnDoubleMove);
+
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn);
+            gameboard.AddActionToHistory(previousAction);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var expected = new List<Action> { new Action(pawn, "e5", ActionType.Move) };
+
+            Assert.Equal(expected, actual);
+        }
+
         /// <summary>
         /// A black pawn can advance 1 or 2 squares as their first action
         /// </summary>
@@ -332,8 +416,91 @@ namespace ChessTests
         [Fact]
         public void PawnBlackEnPassant()
         {
-            // not yet implemented as performing an action on a gameboard not yet implemented
-            Assert.True(false);
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.Black, "d4");
+            var enemyPawn = new Pawn(TeamColour.White, "e4");
+            var previousAction = new Action(enemyPawn, "e4", ActionType.PawnDoubleMove);
+
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn);
+            gameboard.AddActionToHistory(previousAction);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+
+            var expected = new List<Action>
+            {
+                new Action(pawn, "d3", ActionType.Move),
+                new Action(pawn, "e3", ActionType.PawnEnPassant)
+            }.OrderBy(a => a.ToString()).ToList();
+
+            Assert.Equal(expected, actual);
+        }
+
+        /// <summary>
+        /// A black pawn should not be able to en passant capture an enemy pawn if the previous action was not a double move from that pawn
+        /// </summary>
+        [Fact]
+        public void PawnBlackEnPassantNotAvailable1()
+        {
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.Black, "e4");
+            var enemyPawn = new Pawn(TeamColour.White, "f4");
+
+            gameboard.SwapTurns();
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var expected = new List<Action> { new Action(pawn, "e3", ActionType.Move) };
+
+            Assert.Equal(expected, actual);
+        }
+
+        /// <summary>
+        /// A black pawn should not be able to en passant capture an enemy pawn (in the correct en passant position) if a DIFFERENT enemy pawn performed the double move
+        /// </summary>
+        [Fact]
+        public void PawnBlackEnPassantNotAvailable2()
+        {
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.Black, "b4");
+            var enemyPawn1 = new Pawn(TeamColour.White, "c4");
+            var enemyPawn2 = new Pawn(TeamColour.White, "g4");
+            var previousAction = new Action(enemyPawn2, "g4", ActionType.PawnDoubleMove);
+
+            gameboard.SwapTurns();
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn1);
+            gameboard.Board.SetSquare(enemyPawn2);
+            gameboard.AddActionToHistory(previousAction);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var expected = new List<Action> { new Action(pawn, "b3", ActionType.Move) };
+
+            Assert.Equal(expected, actual);
+        }
+
+        /// <summary>
+        /// A black pawn should not be able to en passant capture an enemy pawn outside of the double move zone (even if the previous action was somehow a double move - (not legal))
+        /// </summary>
+        [Fact]
+        public void PawnBlackEnPassantNotAvailable3()
+        {
+            var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.Black, "d6");
+            var enemyPawn = new Pawn(TeamColour.White, "e6");
+
+            var previousAction = new Action(enemyPawn, "e6", ActionType.PawnDoubleMove);
+
+            gameboard.SwapTurns();
+            gameboard.Board.SetSquare(pawn);
+            gameboard.Board.SetSquare(enemyPawn);
+            gameboard.AddActionToHistory(previousAction);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var expected = new List<Action> { new Action(pawn, "d5", ActionType.Move) };
+
+            Assert.Equal(expected, actual);
         }
     }
 }
