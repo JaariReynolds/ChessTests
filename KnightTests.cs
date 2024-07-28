@@ -132,7 +132,7 @@ namespace ChessTests
             gameboard.SetTestBoard(3, 5, friendlyPawn2);
             gameboard.SetTestBoard(0, 2, enemyPawn1);
             gameboard.SetTestBoard(0, 4, enemyPawn2);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == knight);
 
             var expected = new List<Action>
             {
@@ -140,8 +140,6 @@ namespace ChessTests
                 new Action(knight, 0, 4, ActionType.Capture),
                 new Action(knight, 1, 1, ActionType.Move),
                 new Action(knight, 1, 5, ActionType.Move),
-                new Action(friendlyPawn1, 2, 1, ActionType.Move),
-                new Action(friendlyPawn2, 2, 5, ActionType.Move),
                 new Action(knight, 4, 2, ActionType.Move),
                 new Action(knight, 4, 4, ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();

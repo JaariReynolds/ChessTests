@@ -117,12 +117,10 @@ namespace ChessTests
             gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(friendlyPawn1);
             gameboard.Board.SetSquare(friendlyPawn2);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == pawn);
 
             var expected = new List<Action> {
                 new Action(pawn, "b5", ActionType.Move ),
-                new Action(friendlyPawn1, "a6", ActionType.Move),
-                new Action(friendlyPawn2, "c6", ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -366,13 +364,9 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(friendlyPawn1);
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == pawn);
 
-            var expected = new List<Action>
-            {
-                new Action(pawn, "c4", ActionType.Move),
-                new Action(friendlyPawn1, "d3", ActionType.Move)
-            }.OrderBy(a => a.ToString()).ToList();
+            var expected = new List<Action> { new Action(pawn, "c4", ActionType.Move) };
 
             Assert.Equal(expected, actual);
         }

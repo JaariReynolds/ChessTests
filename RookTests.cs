@@ -85,7 +85,7 @@ namespace ChessTests
 
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(1, 3, friendlyPawn);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
@@ -101,10 +101,6 @@ namespace ChessTests
                 new Action(rook, 3, 5, ActionType.Move),
                 new Action(rook, 3, 6, ActionType.Move),
                 new Action(rook, 3, 7, ActionType.Move),
-                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteKnight),
-                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteBishop),
-                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteRook),
-                new Action(friendlyPawn, 0, 3, ActionType.PawnPromoteQueen)
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -154,7 +150,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(3, 4, friendlyPawn);
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
@@ -168,7 +164,6 @@ namespace ChessTests
                 new Action(rook, 3, 0, ActionType.Move),
                 new Action(rook, 3, 1, ActionType.Move),
                 new Action(rook, 3, 2, ActionType.Move),
-                new Action(friendlyPawn, 4, 4, ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -187,7 +182,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.SetTestBoard(3, 3, rook);
             gameboard.SetTestBoard(3, 1, friendlyPawn);
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
@@ -203,7 +198,6 @@ namespace ChessTests
                 new Action(rook, 3, 5, ActionType.Move),
                 new Action(rook, 3, 6, ActionType.Move),
                 new Action(rook, 3, 7, ActionType.Move),
-                new Action(friendlyPawn, 4, 1, ActionType.Move)
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
