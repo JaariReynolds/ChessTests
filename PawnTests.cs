@@ -17,6 +17,7 @@ namespace ChessTests
             var pawn = new Pawn(TeamColour.White, "a2");
 
             gameboard.Board.SetSquare(pawn);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
@@ -71,6 +72,7 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "b3"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "b4"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             Assert.Empty(actual);
@@ -117,6 +119,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(friendlyPawn1);
             gameboard.Board.SetSquare(friendlyPawn2);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == pawn);
 
             var expected = new List<Action> {
@@ -262,6 +265,7 @@ namespace ChessTests
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action> {
@@ -300,8 +304,8 @@ namespace ChessTests
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
             var expected = new List<Action> { new Action(pawn, "b2", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -364,8 +368,8 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(friendlyPawn1);
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == pawn);
 
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == pawn);
             var expected = new List<Action> { new Action(pawn, "c4", ActionType.Move) };
 
             Assert.Equal(expected, actual);
