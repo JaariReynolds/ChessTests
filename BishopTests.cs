@@ -13,26 +13,27 @@ namespace ChessTests
         public void BishopWhiteMove()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
+            var bishop = new Bishop(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, bishop);
+            gameboard.Board.SetSquare(bishop);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -45,27 +46,28 @@ namespace ChessTests
         public void BishopBlackMove()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.Black, 4, 3);
+            var bishop = new Bishop(TeamColour.Black, "d4");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(4, 3, bishop);
+            gameboard.Board.SetSquare(bishop);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 1, 0, ActionType.Move),
-                new Action(bishop, 2, 1, ActionType.Move),
-                new Action(bishop, 3, 2, ActionType.Move),
-                new Action(bishop, 5, 4, ActionType.Move),
-                new Action(bishop, 6, 5, ActionType.Move),
-                new Action(bishop, 7, 6, ActionType.Move),
-                new Action(bishop, 7, 0, ActionType.Move),
-                new Action(bishop, 6, 1, ActionType.Move),
-                new Action(bishop, 5, 2, ActionType.Move),
-                new Action(bishop, 3, 4, ActionType.Move),
-                new Action(bishop, 2, 5, ActionType.Move),
-                new Action(bishop, 1, 6, ActionType.Move),
-                new Action(bishop, 0, 7, ActionType.Move),
+                new Action(bishop, "a1", ActionType.Move),
+                new Action(bishop, "b2", ActionType.Move),
+                new Action(bishop, "c3", ActionType.Move),
+                new Action(bishop, "e5", ActionType.Move),
+                new Action(bishop, "f6", ActionType.Move),
+                new Action(bishop, "g7", ActionType.Move),
+                new Action(bishop, "h8", ActionType.Move),
+                new Action(bishop, "a7", ActionType.Move),
+                new Action(bishop, "b6", ActionType.Move),
+                new Action(bishop, "c5", ActionType.Move),
+                new Action(bishop, "e3", ActionType.Move),
+                new Action(bishop, "f2", ActionType.Move),
+                new Action(bishop, "g1", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -78,26 +80,26 @@ namespace ChessTests
         public void BishopObstructionNorthWest()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 2, 2);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var friendlyPawn1 = new Pawn(TeamColour.White, "c6");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(2, 2, friendlyPawn1);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(friendlyPawn1);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Move),
-                new Action(friendlyPawn1, 1, 2, ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -115,7 +117,7 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(friendlyPawn1);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
 
             var expected = new List<Action>
             {
@@ -129,7 +131,6 @@ namespace ChessTests
                 new Action(bishop, "a2", ActionType.Move),
                 new Action(bishop, "b3", ActionType.Move),
                 new Action(bishop, "c4", ActionType.Move),
-                new Action(friendlyPawn1, "e7", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -142,27 +143,27 @@ namespace ChessTests
         public void BishopObstructionSouthWest()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 5, 1);
-            var friendlyPawn2 = new Pawn(TeamColour.White, 4, 2);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var friendlyPawn1 = new Pawn(TeamColour.White, "b3");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(5, 1, friendlyPawn1);
-            gameboard.SetTestBoard(4, 2, friendlyPawn2);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(friendlyPawn1);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -175,26 +176,26 @@ namespace ChessTests
         public void BishopObstructionSouthEast()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 6, 6);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var friendlyPawn1 = new Pawn(TeamColour.White, "f3");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(6, 6, friendlyPawn1);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(friendlyPawn1);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Move),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -207,27 +208,28 @@ namespace ChessTests
         public void BishopCaptureNorthWest()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var enemyPawn = new Pawn(TeamColour.Black, 1, 1);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var enemyPawn = new Pawn(TeamColour.Black, "b7");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(1, 1, enemyPawn);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(enemyPawn);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Capture),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
+                new Action(bishop, "b7", ActionType.Capture),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -240,26 +242,27 @@ namespace ChessTests
         public void BishopCaptureNorthEast()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var enemyKnight = new Knight(TeamColour.Black, 2, 4);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var enemyKnight = new Knight(TeamColour.Black, "e6");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(2, 4, enemyKnight);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(enemyKnight);
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Capture),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Capture)
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -272,28 +275,28 @@ namespace ChessTests
         public void BishopCaptureSouthWest()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var enemyRook = new Rook(TeamColour.Black, 6, 0);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var enemyRook = new Rook(TeamColour.Black, "b3");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(6, 0, enemyRook);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(enemyRook);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Move),
-                new Action(bishop, 6, 6, ActionType.Move),
-                new Action(bishop, 7, 7, ActionType.Move),
-                new Action(bishop, 6, 0, ActionType.Capture),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Move),
+                new Action(bishop, "g2", ActionType.Move),
+                new Action(bishop, "h1", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Capture),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -306,26 +309,27 @@ namespace ChessTests
         public void BishopCaptureSouthEast()
         {
             var gameboard = new Gameboard();
-            var bishop = new Bishop(TeamColour.White, 3, 3);
-            var enemyBishop = new Bishop(TeamColour.Black, 5, 5);
+            var bishop = new Bishop(TeamColour.White, "d5");
+            var enemyBishop = new Bishop(TeamColour.Black, "f3");
 
-            gameboard.SetTestBoard(3, 3, bishop);
-            gameboard.SetTestBoard(5, 5, enemyBishop);
+            gameboard.Board.SetSquare(bishop);
+            gameboard.Board.SetSquare(enemyBishop);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(bishop, 2, 2, ActionType.Move),
-                new Action(bishop, 1, 1, ActionType.Move),
-                new Action(bishop, 0, 0, ActionType.Move),
-                new Action(bishop, 4, 4, ActionType.Move),
-                new Action(bishop, 5, 5, ActionType.Capture),
-                new Action(bishop, 6, 0, ActionType.Move),
-                new Action(bishop, 5, 1, ActionType.Move),
-                new Action(bishop, 4, 2, ActionType.Move),
-                new Action(bishop, 2, 4, ActionType.Move),
-                new Action(bishop, 1, 5, ActionType.Move),
-                new Action(bishop, 0, 6, ActionType.Move),
+                new Action(bishop, "a8", ActionType.Move),
+                new Action(bishop, "b7", ActionType.Move),
+                new Action(bishop, "c6", ActionType.Move),
+                new Action(bishop, "e4", ActionType.Move),
+                new Action(bishop, "f3", ActionType.Capture),
+                new Action(bishop, "a2", ActionType.Move),
+                new Action(bishop, "b3", ActionType.Move),
+                new Action(bishop, "c4", ActionType.Move),
+                new Action(bishop, "e6", ActionType.Move),
+                new Action(bishop, "f7", ActionType.Move),
+                new Action(bishop, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);

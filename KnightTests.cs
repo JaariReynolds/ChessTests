@@ -13,21 +13,22 @@ namespace ChessTests
         public void KnightWhiteMoves()
         {
             var gameboard = new Gameboard();
-            var knight = new Knight(TeamColour.White, 3, 3);
+            var knight = new Knight(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, knight);
+            gameboard.Board.SetSquare(knight);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(knight, 1, 2, ActionType.Move),
-                new Action(knight, 1, 4, ActionType.Move),
-                new Action(knight, 5, 2, ActionType.Move),
-                new Action(knight, 5, 4, ActionType.Move),
-                new Action(knight, 2, 1, ActionType.Move),
-                new Action(knight, 2, 5, ActionType.Move),
-                new Action(knight, 4, 1, ActionType.Move),
-                new Action(knight, 4, 5, ActionType.Move),
+                new Action(knight, "b6", ActionType.Move),
+                new Action(knight, "b4", ActionType.Move),
+                new Action(knight, "c7", ActionType.Move),
+                new Action(knight, "e7", ActionType.Move),
+                new Action(knight, "f6", ActionType.Move),
+                new Action(knight, "f4", ActionType.Move),
+                new Action(knight, "c3", ActionType.Move),
+                new Action(knight, "e3", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -40,15 +41,16 @@ namespace ChessTests
         public void KnightWhiteCornerMoves()
         {
             var gameboard = new Gameboard();
-            var knight = new Knight(TeamColour.White, 0, 0);
+            var knight = new Knight(TeamColour.White, "a8");
 
-            gameboard.SetTestBoard(0, 0, knight);
+            gameboard.Board.SetSquare(knight);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(knight, 1, 2, ActionType.Move),
-                new Action(knight, 2, 1, ActionType.Move),
+                new Action(knight, "c7", ActionType.Move),
+                new Action(knight, "b6", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -61,23 +63,22 @@ namespace ChessTests
         public void KnightWhiteFriendlyObstruction()
         {
             var gameboard = new Gameboard();
-            var knight = new Knight(TeamColour.White, 2, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 0, 2);
-            var friendlyPawn2 = new Pawn(TeamColour.White, 0, 4);
+            var knight = new Knight(TeamColour.White, "d6");
 
-            gameboard.SetTestBoard(2, 3, knight);
-            gameboard.SetTestBoard(0, 2, friendlyPawn1);
-            gameboard.SetTestBoard(0, 4, friendlyPawn2);
+            gameboard.Board.SetSquare(knight);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c8"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e8"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(knight, 1, 1, ActionType.Move),
-                new Action(knight, 1, 5, ActionType.Move),
-                new Action(knight, 3, 1, ActionType.Move),
-                new Action(knight, 3, 5, ActionType.Move),
-                new Action(knight, 4, 2, ActionType.Move),
-                new Action(knight, 4, 4, ActionType.Move),
+                new Action(knight, "b7", ActionType.Move),
+                new Action(knight, "b5", ActionType.Move),
+                new Action(knight, "c4", ActionType.Move),
+                new Action(knight, "e4", ActionType.Move),
+                new Action(knight, "f7", ActionType.Move),
+                new Action(knight, "f5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -90,25 +91,24 @@ namespace ChessTests
         public void KnightWhiteCapture()
         {
             var gameboard = new Gameboard();
-            var knight = new Knight(TeamColour.White, 2, 3);
-            var enemyPawn1 = new Pawn(TeamColour.Black, 0, 2);
-            var enemyPawn2 = new Pawn(TeamColour.Black, 0, 4);
+            var knight = new Knight(TeamColour.White, "d6");
 
-            gameboard.SetTestBoard(2, 3, knight);
-            gameboard.SetTestBoard(0, 2, enemyPawn1);
-            gameboard.SetTestBoard(0, 4, enemyPawn2);
+            gameboard.Board.SetSquare(knight);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c8"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e8"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(knight, 0, 2, ActionType.Capture),
-                new Action(knight, 0, 4, ActionType.Capture),
-                new Action(knight, 1, 1, ActionType.Move),
-                new Action(knight, 1, 5, ActionType.Move),
-                new Action(knight, 3, 1, ActionType.Move),
-                new Action(knight, 3, 5, ActionType.Move),
-                new Action(knight, 4, 2, ActionType.Move),
-                new Action(knight, 4, 4, ActionType.Move),
+                new Action(knight, "c8", ActionType.Capture),
+                new Action(knight, "e8", ActionType.Capture),
+                new Action(knight, "b7", ActionType.Move),
+                new Action(knight, "b5", ActionType.Move),
+                new Action(knight, "c4", ActionType.Move),
+                new Action(knight, "e4", ActionType.Move),
+                new Action(knight, "f7", ActionType.Move),
+                new Action(knight, "f5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -121,27 +121,24 @@ namespace ChessTests
         public void KnightWhiteCaptureAndObstruction()
         {
             var gameboard = new Gameboard();
-            var knight = new Knight(TeamColour.White, 2, 3);
-            var friendlyPawn1 = new Pawn(TeamColour.White, 3, 1);
-            var friendlyPawn2 = new Pawn(TeamColour.White, 3, 5);
-            var enemyPawn1 = new Pawn(TeamColour.Black, 0, 2);
-            var enemyPawn2 = new Pawn(TeamColour.Black, 0, 4);
+            var knight = new Knight(TeamColour.White, "d6");
 
-            gameboard.SetTestBoard(2, 3, knight);
-            gameboard.SetTestBoard(3, 1, friendlyPawn1);
-            gameboard.SetTestBoard(3, 5, friendlyPawn2);
-            gameboard.SetTestBoard(0, 2, enemyPawn1);
-            gameboard.SetTestBoard(0, 4, enemyPawn2);
+            gameboard.Board.SetSquare(knight);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c8"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e8"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "b7"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "b5"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == knight);
 
             var expected = new List<Action>
             {
-                new Action(knight, 0, 2, ActionType.Capture),
-                new Action(knight, 0, 4, ActionType.Capture),
-                new Action(knight, 1, 1, ActionType.Move),
-                new Action(knight, 1, 5, ActionType.Move),
-                new Action(knight, 4, 2, ActionType.Move),
-                new Action(knight, 4, 4, ActionType.Move),
+                new Action(knight, "b7", ActionType.Capture),
+                new Action(knight, "b5", ActionType.Capture),
+                new Action(knight, "c4", ActionType.Move),
+                new Action(knight, "e4", ActionType.Move),
+                new Action(knight, "f5", ActionType.Move),
+                new Action(knight, "f7", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);

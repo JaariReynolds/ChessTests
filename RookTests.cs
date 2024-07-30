@@ -13,27 +13,28 @@ namespace ChessTests
         public void RookWhiteMove()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.White, 3, 3);
+            var rook = new Rook(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, rook);
+            gameboard.Board.SetSquare(rook);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move),
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -46,28 +47,29 @@ namespace ChessTests
         public void RookBlackMove()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.Black, 3, 3);
+            var rook = new Rook(TeamColour.Black, "d5");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(3, 3, rook);
+            gameboard.Board.SetSquare(rook);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move),
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -80,27 +82,27 @@ namespace ChessTests
         public void RookWhiteObstructionNorth()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 1, 3);
+            var rook = new Rook(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(1, 3, friendlyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "d7"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -113,25 +115,26 @@ namespace ChessTests
         public void RookWhiteObstructionSouth()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 4, 3);
+            var rook = new Rook(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(4, 3, friendlyPawn);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.White, "d3"));
+
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -144,26 +147,28 @@ namespace ChessTests
         public void RookBlackObstructionEast()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.Black, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.Black, 3, 4);
+            var rook = new Rook(TeamColour.Black, "d5");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(3, 4, friendlyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.Black, "g5"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -176,28 +181,27 @@ namespace ChessTests
         public void RookBlackObstructionWest()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.Black, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.Black, 3, 1);
+            var rook = new Rook(TeamColour.Black, "d5");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(3, 1, friendlyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.Black, "c5"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == rook);
 
             var expected = new List<Action>
             {
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -210,28 +214,29 @@ namespace ChessTests
         public void RookBlackCaptureNorth()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.Black, 3, 3);
-            var enemyPawn = new Pawn(TeamColour.White, 2, 3);
+            var rook = new Rook(TeamColour.Black, "d5");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(2, 3, enemyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.White, "d7"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Capture),
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move)
+                new Action(rook, "d7", ActionType.Capture),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -244,27 +249,29 @@ namespace ChessTests
         public void RookBlackCaptureSouth()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.Black, 3, 3);
-            var enemyPawn = new Pawn(TeamColour.White, 4, 3);
+            var rook = new Rook(TeamColour.Black, "d5");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(4, 3, enemyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.White, "d2"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
-                new Action(rook, 4, 3, ActionType.Capture),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move)
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Capture),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -277,26 +284,26 @@ namespace ChessTests
         public void RookWhiteCaptureEast()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.White, 3, 3);
-            var enemyPawn = new Pawn(TeamColour.Black, 3, 4);
+            var rook = new Rook(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(3, 4, enemyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e5"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Capture),
-                new Action(rook, 3, 0, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Move),
-                new Action(rook, 3, 2, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "a5", ActionType.Move),
+                new Action(rook, "b5", ActionType.Move),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Capture),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -309,28 +316,28 @@ namespace ChessTests
         public void RookWhiteCaptureWest()
         {
             var gameboard = new Gameboard();
-            var rook = new Rook(TeamColour.White, 3, 3);
-            var enemyPawn = new Pawn(TeamColour.Black, 3, 1);
+            var rook = new Rook(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, rook);
-            gameboard.SetTestBoard(3, 1, enemyPawn);
+            gameboard.Board.SetSquare(rook);
+            gameboard.Board.SetSquare(new Rook(TeamColour.Black, "b5"));
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(rook, 4, 3, ActionType.Move),
-                new Action(rook, 5, 3, ActionType.Move),
-                new Action(rook, 6, 3, ActionType.Move),
-                new Action(rook, 7, 3, ActionType.Move),
-                new Action(rook, 2, 3, ActionType.Move),
-                new Action(rook, 1, 3, ActionType.Move),
-                new Action(rook, 0, 3, ActionType.Move),
-                new Action(rook, 3, 1, ActionType.Capture),
-                new Action(rook, 3, 2, ActionType.Move),
-                new Action(rook, 3, 4, ActionType.Move),
-                new Action(rook, 3, 5, ActionType.Move),
-                new Action(rook, 3, 6, ActionType.Move),
-                new Action(rook, 3, 7, ActionType.Move),
+                new Action(rook, "d8", ActionType.Move),
+                new Action(rook, "d7", ActionType.Move),
+                new Action(rook, "d6", ActionType.Move),
+                new Action(rook, "d4", ActionType.Move),
+                new Action(rook, "d3", ActionType.Move),
+                new Action(rook, "d2", ActionType.Move),
+                new Action(rook, "d1", ActionType.Move),
+                new Action(rook, "b5", ActionType.Capture),
+                new Action(rook, "c5", ActionType.Move),
+                new Action(rook, "e5", ActionType.Move),
+                new Action(rook, "f5", ActionType.Move),
+                new Action(rook, "g5", ActionType.Move),
+                new Action(rook, "h5", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);

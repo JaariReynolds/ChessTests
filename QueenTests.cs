@@ -10,40 +10,41 @@ namespace ChessTests
         public void QueenWhiteMove()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
+            gameboard.Board.SetSquare(queen);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -53,41 +54,42 @@ namespace ChessTests
         public void QueenBlackMove()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.Black, 3, 3);
+            var queen = new Queen(TeamColour.Black, "d5");
 
             gameboard.SwapTurns();
-            gameboard.SetTestBoard(3, 3, queen);
+            gameboard.Board.SetSquare(queen);
+
             var actual = gameboard.CalculateTeamActions(TeamColour.Black);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -97,40 +99,40 @@ namespace ChessTests
         public void QueenWhiteObstructionNorth()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 2, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 3, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "d7"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -140,39 +142,38 @@ namespace ChessTests
         public void QueenWhiteObstructionSouth()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 4, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(4, 3, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "d4"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -182,39 +183,39 @@ namespace ChessTests
         public void QueenWhiteObstructionEast()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 3, 4);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(3, 4, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "f5"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -224,40 +225,39 @@ namespace ChessTests
         public void QueenWhiteObstructionWest()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 3, 2);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(3, 2, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c5"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                 new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -267,40 +267,39 @@ namespace ChessTests
         public void QueenWhiteObstructionNorthWest()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 2, 2);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 2, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c6"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -310,41 +309,40 @@ namespace ChessTests
         public void QueenWhiteObstructionNorthEast()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 2, 4);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 4, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "f7"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(friendlyPawn, 1, 4, ActionType.Move)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -354,41 +352,40 @@ namespace ChessTests
         public void QueenWhiteObstructionSouthWest()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 4, 2);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(4, 2, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "b3"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(friendlyPawn, 3, 2, ActionType.Move)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -398,40 +395,38 @@ namespace ChessTests
         public void QueenWhiteObstructionSouthEast()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var friendlyPawn = new Pawn(TeamColour.White, 4, 4);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(4, 4, friendlyPawn);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e4"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(friendlyPawn, 3, 4, ActionType.Move)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -441,41 +436,41 @@ namespace ChessTests
         public void QueenWhiteCaptureNorth()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 2, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 3, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d7"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Capture)
+                new Action(queen, "d7", ActionType.Capture),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -485,40 +480,41 @@ namespace ChessTests
         public void QueenWhiteCaptureSouth()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 4, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(4, 3, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d2"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Capture),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -528,40 +524,40 @@ namespace ChessTests
         public void QueenWhiteCaptureEast()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 3, 4);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(3, 4, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "f5"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Capture),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -571,41 +567,40 @@ namespace ChessTests
         public void QueenWhiteCaptureWest()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 3, 2);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(3, 2, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c5"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                 new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "c5", ActionType.Capture),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -615,41 +610,40 @@ namespace ChessTests
         public void QueenWhiteCaptureNorthWest()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 2, 2);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 2, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c6"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "c6", ActionType.Capture),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -659,41 +653,40 @@ namespace ChessTests
         public void QueenWhiteCaptureNorthEast()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 2, 4);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 4, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e6"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Capture),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -703,41 +696,40 @@ namespace ChessTests
         public void QueenWhiteCaptureSouthWest()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 4, 2);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(4, 2, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c4"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Move),
-                new Action(queen, 5, 5, ActionType.Move),
-                new Action(queen, 6, 6, ActionType.Move),
-                new Action(queen, 7, 7, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Move),
+                new Action(queen, "h1", ActionType.Move),
+                new Action(queen, "c4", ActionType.Capture),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -747,40 +739,41 @@ namespace ChessTests
         public void QueenWhiteCaptureSouthEast()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
-            var enemy = new Pawn(TeamColour.Black, 4, 4);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(4, 4, enemy);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "g2"));
 
             var actual = gameboard.CalculateTeamActions(TeamColour.White);
 
             var expected = new List<Action>
             {
-                new Action(queen, 0, 0, ActionType.Move),
-                new Action(queen, 1, 1, ActionType.Move),
-                new Action(queen, 2, 2, ActionType.Move),
-                new Action(queen, 6, 0, ActionType.Move),
-                new Action(queen, 5, 1, ActionType.Move),
-                new Action(queen, 4, 2, ActionType.Move),
-                new Action(queen, 2, 4, ActionType.Move),
-                new Action(queen, 1, 5, ActionType.Move),
-                new Action(queen, 0, 6, ActionType.Move),
-                new Action(queen, 3, 0, ActionType.Move),
-                new Action(queen, 3, 1, ActionType.Move),
-                new Action(queen, 3, 2, ActionType.Move),
-                new Action(queen, 3, 4, ActionType.Move),
-                new Action(queen, 3, 5, ActionType.Move),
-                new Action(queen, 3, 6, ActionType.Move),
-                new Action(queen, 3, 7, ActionType.Move),
-                new Action(queen, 0, 3, ActionType.Move),
-                new Action(queen, 1, 3, ActionType.Move),
-                new Action(queen, 2, 3, ActionType.Move),
-                new Action(queen, 4, 3, ActionType.Move),
-                new Action(queen, 5, 3, ActionType.Move),
-                new Action(queen, 6, 3, ActionType.Move),
-                new Action(queen, 7, 3, ActionType.Move),
-                new Action(queen, 4, 4, ActionType.Capture)
+                new Action(queen, "d8", ActionType.Move),
+                new Action(queen, "d7", ActionType.Move),
+                new Action(queen, "d6", ActionType.Move),
+                new Action(queen, "d4", ActionType.Move),
+                new Action(queen, "d3", ActionType.Move),
+                new Action(queen, "d2", ActionType.Move),
+                new Action(queen, "d1", ActionType.Move),
+                new Action(queen, "a5", ActionType.Move),
+                new Action(queen, "b5", ActionType.Move),
+                new Action(queen, "c5", ActionType.Move),
+                new Action(queen, "e5", ActionType.Move),
+                new Action(queen, "f5", ActionType.Move),
+                new Action(queen, "g5", ActionType.Move),
+                new Action(queen, "h5", ActionType.Move),
+                new Action(queen, "a8", ActionType.Move),
+                new Action(queen, "b7", ActionType.Move),
+                new Action(queen, "c6", ActionType.Move),
+                new Action(queen, "e4", ActionType.Move),
+                new Action(queen, "f3", ActionType.Move),
+                new Action(queen, "g2", ActionType.Capture),
+                new Action(queen, "a2", ActionType.Move),
+                new Action(queen, "b3", ActionType.Move),
+                new Action(queen, "c4", ActionType.Move),
+                new Action(queen, "e6", ActionType.Move),
+                new Action(queen, "f7", ActionType.Move),
+                new Action(queen, "g8", ActionType.Move),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -790,76 +783,52 @@ namespace ChessTests
         public void QueenWhiteObstructionAll()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            var friendlyNW = new Pawn(TeamColour.White, 2, 2);
-            var friendlyN = new Pawn(TeamColour.White, 2, 3);
-            var friendlyNE = new Pawn(TeamColour.White, 2, 4);
-            var friendlyW = new Pawn(TeamColour.White, 3, 2);
-            var friendlyE = new Pawn(TeamColour.White, 3, 4);
-            var friendlySW = new Pawn(TeamColour.White, 4, 2);
-            var friendlyS = new Pawn(TeamColour.White, 4, 3);
-            var friendlySE = new Pawn(TeamColour.White, 4, 4);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c5"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c6"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "d6"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e6"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e5"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e4"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "d4"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c4"));
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 2, friendlyNW);
-            gameboard.SetTestBoard(2, 3, friendlyN);
-            gameboard.SetTestBoard(2, 4, friendlyNE);
-            gameboard.SetTestBoard(3, 2, friendlyW);
-            gameboard.SetTestBoard(3, 4, friendlyE);
-            gameboard.SetTestBoard(4, 2, friendlySW);
-            gameboard.SetTestBoard(4, 3, friendlyS);
-            gameboard.SetTestBoard(4, 4, friendlySE);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
-
-            var expected = new List<Action>
-            {
-                new Action(friendlyNW, 1, 2, ActionType.Move),
-                new Action(friendlyN, 1, 3, ActionType.Move),
-                new Action(friendlyNE, 1, 4, ActionType.Move),
-            }.OrderBy(a => a.ToString()).ToList();
-
-            Assert.Equal(expected, actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
         public void QueenWhiteCaptureAll()
         {
             var gameboard = new Gameboard();
-            var queen = new Queen(TeamColour.White, 3, 3);
+            var queen = new Queen(TeamColour.White, "d5");
 
-            var enemyNW = new Pawn(TeamColour.Black, 2, 2);
-            var enemyN = new Pawn(TeamColour.Black, 2, 3);
-            var enemyNE = new Pawn(TeamColour.Black, 2, 4);
-            var enemyW = new Pawn(TeamColour.Black, 3, 2);
-            var enemyE = new Pawn(TeamColour.Black, 3, 4);
-            var enemySW = new Pawn(TeamColour.Black, 4, 2);
-            var enemyS = new Pawn(TeamColour.Black, 4, 3);
-            var enemySE = new Pawn(TeamColour.Black, 4, 4);
+            gameboard.Board.SetSquare(queen);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c5"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c6"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d6"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e6"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e5"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e4"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d4"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c4"));
 
-            gameboard.SetTestBoard(3, 3, queen);
-            gameboard.SetTestBoard(2, 2, enemyNW);
-            gameboard.SetTestBoard(2, 3, enemyN);
-            gameboard.SetTestBoard(2, 4, enemyNE);
-            gameboard.SetTestBoard(3, 2, enemyW);
-            gameboard.SetTestBoard(3, 4, enemyE);
-            gameboard.SetTestBoard(4, 2, enemySW);
-            gameboard.SetTestBoard(4, 3, enemyS);
-            gameboard.SetTestBoard(4, 4, enemySE);
-
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == queen);
 
             var expected = new List<Action>
             {
-                new Action(queen, 2, 2, ActionType.Capture),
-                new Action(queen, 2, 3, ActionType.Capture),
-                new Action(queen, 2, 4, ActionType.Capture),
-                new Action(queen, 3, 2, ActionType.Capture),
-                new Action(queen, 3, 4, ActionType.Capture),
-                new Action(queen, 4, 2, ActionType.Capture),
-                new Action(queen, 4, 3, ActionType.Capture),
-                new Action(queen, 4, 4, ActionType.Capture),
+                new Action(queen, "c5", ActionType.Capture),
+                new Action(queen, "c6", ActionType.Capture),
+                new Action(queen, "d6", ActionType.Capture),
+                new Action(queen, "e6", ActionType.Capture),
+                new Action(queen, "e5", ActionType.Capture),
+                new Action(queen, "e4", ActionType.Capture),
+                new Action(queen, "d4", ActionType.Capture),
+                new Action(queen, "c4", ActionType.Capture),
+
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
