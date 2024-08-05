@@ -145,6 +145,7 @@ namespace ChessTests
 
             var enemy = new Pawn(TeamColour.Black, "e2");
 
+            gameboard.SwapTurns();
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(enemy);
 
@@ -171,6 +172,7 @@ namespace ChessTests
             var enemyKnight = new Knight(TeamColour.Black, "e7");
 
             // knight is blocking the queen from a check on white king
+            gameboard.SwapTurns();
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new Queen(TeamColour.Black, "e8"));
             gameboard.Board.SetSquare(enemyKnight);
@@ -216,6 +218,7 @@ namespace ChessTests
 
             var enemyRook = new Rook(TeamColour.Black, "e7");
 
+            gameboard.SwapTurns();
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e5"));
             gameboard.Board.SetSquare(enemyRook);
@@ -305,7 +308,5 @@ namespace ChessTests
             // The king should be in check before the action, and still in check after the action
             Assert.True(stillInCheck);
         }
-
-
     }
 }
