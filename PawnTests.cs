@@ -419,6 +419,7 @@ namespace ChessTests
             var enemyPawn = new Pawn(TeamColour.White, "e4");
             var previousAction = new Action(enemyPawn, "e4", ActionType.PawnDoubleMove);
 
+            gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(enemyPawn);
             gameboard.AddActionToHistory(previousAction);

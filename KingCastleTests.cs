@@ -195,6 +195,7 @@ namespace ChessTests
 
             // move out of starting square, then move back to starting square
             gameboard.PerformAction(new Action(king, "d1", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e1", ActionType.Move));
 
             var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
@@ -217,6 +218,7 @@ namespace ChessTests
 
             // move out of starting square, then move back to starting square
             gameboard.PerformAction(new Action(rook, "h6", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "h1", ActionType.Move));
 
             var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
@@ -412,7 +414,9 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
 
             // move out of starting square, then move back to starting square
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e7", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e8", ActionType.Move));
 
             var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
@@ -434,7 +438,9 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
 
             // move out of starting square, then move back to starting square
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "h6", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "h8", ActionType.Move));
 
             var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
@@ -671,6 +677,7 @@ namespace ChessTests
 
             // move out of starting square, then move back to starting square
             gameboard.PerformAction(new Action(king, "d1", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e1", ActionType.Move));
 
             var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
@@ -693,6 +700,7 @@ namespace ChessTests
 
             // move out of starting square, then move back to starting square
             gameboard.PerformAction(new Action(rook, "a6", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "a1", ActionType.Move));
 
             var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
@@ -928,7 +936,9 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
 
             // move out of starting square, then move back to starting square
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "d8", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e8", ActionType.Move));
 
             var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
@@ -951,6 +961,7 @@ namespace ChessTests
 
             // move out of starting square, then move back to starting square
             gameboard.PerformAction(new Action(rook, "a6", ActionType.Move));
+            gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "a1", ActionType.Move));
 
             var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
