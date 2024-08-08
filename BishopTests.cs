@@ -17,7 +17,12 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(bishop);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -51,7 +56,11 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(bishop);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -86,7 +95,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(friendlyPawn1);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -117,7 +130,12 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(friendlyPawn1);
-            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
+
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -149,7 +167,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(friendlyPawn1);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -182,7 +204,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(friendlyPawn1);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -214,7 +240,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(enemyPawn);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -248,7 +278,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(enemyKnight);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == bishop);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -281,7 +315,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(enemyRook);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -315,7 +353,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(bishop);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(bishop, out var bishopActions))
+                actual = bishopActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {

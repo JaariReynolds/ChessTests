@@ -18,7 +18,11 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(pawn);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -37,10 +41,16 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
 
-            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "a2"));
+            var pawn = new Pawn(TeamColour.White, "a2");
+
+            gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "a3"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             Assert.Empty(actual);
         }
@@ -56,7 +66,12 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(pawn);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "b4", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -69,11 +84,16 @@ namespace ChessTests
         public void PawnWhiteNoMove()
         {
             var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.White, "b3");
 
-            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "b3"));
+            gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "b4"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             Assert.Empty(actual);
         }
@@ -86,14 +106,16 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.White, "c4");
-            var blackPawn1 = new Pawn(TeamColour.Black, "b5");
-            var blackPawn2 = new Pawn(TeamColour.Black, "d5");
 
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(blackPawn1);
-            gameboard.Board.SetSquare(blackPawn2);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "b5"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d5"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -113,14 +135,16 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.White, "b4");
-            var friendlyPawn1 = new Pawn(TeamColour.White, "a5");
-            var friendlyPawn2 = new Pawn(TeamColour.White, "c5");
 
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(friendlyPawn1);
-            gameboard.Board.SetSquare(friendlyPawn2);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "a5"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c5"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White).Where(action => action.Piece == pawn);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
                 new Action(pawn, "b5", ActionType.Move ),
@@ -137,14 +161,16 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.White, "b7");
-            var blackPawn1 = new Pawn(TeamColour.Black, "a8");
-            var blackPawn2 = new Pawn(TeamColour.Black, "c8");
 
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(blackPawn1);
-            gameboard.Board.SetSquare(blackPawn2);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "a8"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c8"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
                 new Action(pawn, "a8", ActionType.PawnPromoteKnight),
@@ -179,7 +205,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(enemyPawn);
             gameboard.AddActionToHistory(previousAction);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -198,12 +228,16 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.White, "f5");
-            var enemyPawn = new Pawn(TeamColour.Black, "e5");
 
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(enemyPawn);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e5"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "f6", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -226,7 +260,12 @@ namespace ChessTests
             gameboard.Board.SetSquare(enemyPawn2);
             gameboard.AddActionToHistory(previousAction);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "b6", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -241,14 +280,18 @@ namespace ChessTests
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.White, "e4");
             var enemyPawn = new Pawn(TeamColour.Black, "d4");
-
             var previousAction = new Action(enemyPawn, "d4", ActionType.PawnDoubleMove);
 
             gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(enemyPawn);
             gameboard.AddActionToHistory(previousAction);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.White);
+            var dict = gameboard.CalculateTeamActions(TeamColour.White);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "e5", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -266,7 +309,11 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
                 new Action(pawn, "a6", ActionType.Move),
@@ -283,12 +330,17 @@ namespace ChessTests
         public void PawnBlackObstructedFirstMove()
         {
             var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.Black, "a7");
 
             gameboard.SwapTurns();
-            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "a7"));
+            gameboard.Board.SetSquare(pawn);
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "a6"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             Assert.Empty(actual);
         }
@@ -305,7 +357,12 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "b2", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -318,12 +375,17 @@ namespace ChessTests
         public void PawnBlackNoMove()
         {
             var gameboard = new Gameboard();
+            var pawn = new Pawn(TeamColour.Black, "c5");
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c5"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c4"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             Assert.Empty(actual);
         }
@@ -336,15 +398,17 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.Black, "f4");
-            var whitePawn1 = new Pawn(TeamColour.White, "e3");
-            var whitePawn2 = new Pawn(TeamColour.White, "g3");
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(whitePawn1);
-            gameboard.Board.SetSquare(whitePawn2);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e3"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "g3"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
                 new Action(pawn, "e3", ActionType.Capture),
@@ -363,13 +427,17 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.Black, "c5");
-            var friendlyPawn1 = new Pawn(TeamColour.Black, "d4");
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(friendlyPawn1);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d4"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black).Where(action => action.Piece == pawn);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "c4", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -383,15 +451,17 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.Black, "g2");
-            var blackPawn1 = new Pawn(TeamColour.White, "f1");
-            var blackPawn2 = new Pawn(TeamColour.White, "h1");
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(blackPawn1);
-            gameboard.Board.SetSquare(blackPawn2);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "f1"));
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "h1"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
                 new Action(pawn, "f1", ActionType.PawnPromoteKnight),
@@ -424,7 +494,11 @@ namespace ChessTests
             gameboard.Board.SetSquare(enemyPawn);
             gameboard.AddActionToHistory(previousAction);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action>
             {
@@ -443,13 +517,17 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var pawn = new Pawn(TeamColour.Black, "e4");
-            var enemyPawn = new Pawn(TeamColour.White, "f4");
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(pawn);
-            gameboard.Board.SetSquare(enemyPawn);
+            gameboard.Board.SetSquare(new Pawn(TeamColour.White, "f4"));
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "e3", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -473,7 +551,12 @@ namespace ChessTests
             gameboard.Board.SetSquare(enemyPawn2);
             gameboard.AddActionToHistory(previousAction);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "b3", ActionType.Move) };
 
             Assert.Equal(expected, actual);
@@ -496,7 +579,12 @@ namespace ChessTests
             gameboard.Board.SetSquare(enemyPawn);
             gameboard.AddActionToHistory(previousAction);
 
-            var actual = gameboard.CalculateTeamActions(TeamColour.Black);
+            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
+            var actual = new List<Action>();
+
+            if (dict.TryGetValue(pawn, out var pawnActions))
+                actual = pawnActions.OrderBy(a => a.ToString()).ToList();
+
             var expected = new List<Action> { new Action(pawn, "d5", ActionType.Move) };
 
             Assert.Equal(expected, actual);
