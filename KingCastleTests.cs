@@ -968,5 +968,49 @@ namespace ChessTests
 
             Assert.False(canQueensideCastle);
         }
+
+        /// <summary>
+        /// A white king should be able to kingside castle when black also has a kingside castle available (infinite loop test)
+        /// </summary>
+        [Fact]
+        public void WhiteKingsideCastle_CastleAvailableBothTeams_Available()
+        {
+            var gameboard = new Gameboard();
+            var whiteKing = new King(TeamColour.White, "e1");
+            var whiteRook = new Rook(TeamColour.White, "h1");
+            var blackKing = new King(TeamColour.Black, "e8");
+            var blackRook = new Rook(TeamColour.Black, "h8");
+
+            gameboard.Board.SetSquare(whiteKing);
+            gameboard.Board.SetSquare(whiteRook);
+            gameboard.Board.SetSquare(blackKing);
+            gameboard.Board.SetSquare(blackRook);
+
+            var canWhiteKingsideCastle = whiteKing.CanKingsideCastle(gameboard.Board, null);
+
+            Assert.True(canWhiteKingsideCastle);
+        }
+
+        /// <summary>
+        /// A white king should be able to queenside castle when black also has a queenside castle available (infinite loop test)
+        /// </summary>
+        [Fact]
+        public void WhiteQueensideCastle_CastleAvailableBothTeams_Available()
+        {
+            var gameboard = new Gameboard();
+            var whiteKing = new King(TeamColour.White, "e1");
+            var whiteRook = new Rook(TeamColour.White, "a1");
+            var blackKing = new King(TeamColour.Black, "e8");
+            var blackRook = new Rook(TeamColour.Black, "a8");
+
+            gameboard.Board.SetSquare(whiteKing);
+            gameboard.Board.SetSquare(whiteRook);
+            gameboard.Board.SetSquare(blackKing);
+            gameboard.Board.SetSquare(blackRook);
+
+            var canWhiteQueensideCastle = whiteKing.CanQueensideCastle(gameboard.Board, null);
+
+            Assert.True(canWhiteQueensideCastle);
+        }
     }
 }
