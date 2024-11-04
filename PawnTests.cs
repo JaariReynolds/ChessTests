@@ -173,18 +173,18 @@ namespace ChessTests
                 actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
-                new Action(pawn, "a8", ActionType.PawnPromoteKnight),
-                new Action(pawn, "a8", ActionType.PawnPromoteBishop),
-                new Action(pawn, "a8", ActionType.PawnPromoteRook),
-                new Action(pawn, "a8", ActionType.PawnPromoteQueen),
+                new Action(pawn, "a8", ActionType.PawnPromoteKnight, pawn.PieceValue),
+                new Action(pawn, "a8", ActionType.PawnPromoteBishop, pawn.PieceValue),
+                new Action(pawn, "a8", ActionType.PawnPromoteRook, pawn.PieceValue),
+                new Action(pawn, "a8", ActionType.PawnPromoteQueen, pawn.PieceValue),
                 new Action(pawn, "b8", ActionType.PawnPromoteKnight),
                 new Action(pawn, "b8", ActionType.PawnPromoteBishop),
                 new Action(pawn, "b8", ActionType.PawnPromoteRook),
                 new Action(pawn, "b8", ActionType.PawnPromoteQueen),
-                new Action(pawn, "c8", ActionType.PawnPromoteKnight),
-                new Action(pawn, "c8", ActionType.PawnPromoteBishop),
-                new Action(pawn, "c8", ActionType.PawnPromoteRook),
-                new Action(pawn, "c8", ActionType.PawnPromoteQueen),
+                new Action(pawn, "c8", ActionType.PawnPromoteKnight, pawn.PieceValue),
+                new Action(pawn, "c8", ActionType.PawnPromoteBishop, pawn.PieceValue),
+                new Action(pawn, "c8", ActionType.PawnPromoteRook, pawn.PieceValue),
+                new Action(pawn, "c8", ActionType.PawnPromoteQueen, pawn.PieceValue),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
@@ -464,18 +464,18 @@ namespace ChessTests
                 actual = pawnActions.OrderBy(a => a.ToString()).ToList();
 
             var expected = new List<Action> {
-                new Action(pawn, "f1", ActionType.PawnPromoteKnight),
-                new Action(pawn, "f1", ActionType.PawnPromoteBishop),
-                new Action(pawn, "f1", ActionType.PawnPromoteRook),
-                new Action(pawn, "f1", ActionType.PawnPromoteQueen),
+                new Action(pawn, "f1", ActionType.PawnPromoteKnight, pawn.PieceValue),
+                new Action(pawn, "f1", ActionType.PawnPromoteBishop, pawn.PieceValue),
+                new Action(pawn, "f1", ActionType.PawnPromoteRook, pawn.PieceValue),
+                new Action(pawn, "f1", ActionType.PawnPromoteQueen, pawn.PieceValue),
                 new Action(pawn, "g1", ActionType.PawnPromoteKnight),
                 new Action(pawn, "g1", ActionType.PawnPromoteBishop),
                 new Action(pawn, "g1", ActionType.PawnPromoteRook),
                 new Action(pawn, "g1", ActionType.PawnPromoteQueen),
-                new Action(pawn, "h1", ActionType.PawnPromoteKnight),
-                new Action(pawn, "h1", ActionType.PawnPromoteBishop),
-                new Action(pawn, "h1", ActionType.PawnPromoteRook),
-                new Action(pawn, "h1", ActionType.PawnPromoteQueen),
+                new Action(pawn, "h1", ActionType.PawnPromoteKnight, pawn.PieceValue),
+                new Action(pawn, "h1", ActionType.PawnPromoteBishop, pawn.PieceValue),
+                new Action(pawn, "h1", ActionType.PawnPromoteRook, pawn.PieceValue),
+                new Action(pawn, "h1", ActionType.PawnPromoteQueen, pawn.PieceValue),
             }.OrderBy(a => a.ToString()).ToList();
 
             Assert.Equal(expected, actual);
