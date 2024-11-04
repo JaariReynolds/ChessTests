@@ -19,7 +19,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.True(canKingsideCastle);
         }
@@ -39,7 +39,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.True(canKingsideCastle);
         }
@@ -57,7 +57,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -75,7 +75,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -95,7 +95,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialKnight);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -115,7 +115,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialBishop);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -135,7 +135,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -155,7 +155,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -175,7 +175,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -198,7 +198,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e1", ActionType.Move));
 
-            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingSideCastle);
         }
@@ -221,7 +221,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "h1", ActionType.Move));
 
-            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingSideCastle);
         }
@@ -239,7 +239,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.True(canKingsideCastle);
         }
@@ -259,7 +259,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.True(canKingsideCastle);
         }
@@ -277,7 +277,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -295,7 +295,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -315,7 +315,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialKnight);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -335,7 +335,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialBishop);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -355,7 +355,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -375,7 +375,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -395,7 +395,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -419,7 +419,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e8", ActionType.Move));
 
-            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingSideCastle);
         }
@@ -443,7 +443,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "h8", ActionType.Move));
 
-            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingSideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingSideCastle);
         }
@@ -461,7 +461,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canQueensideCastle);
         }
@@ -481,7 +481,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canQueensideCastle);
         }
@@ -501,7 +501,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canQueensideCastle);
         }
@@ -519,7 +519,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -537,7 +537,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board, null);
+            var canKingsideCastle = king.CanKingsideCastle(gameboard.Board);
 
             Assert.False(canKingsideCastle);
         }
@@ -557,7 +557,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialKnight);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -577,7 +577,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialBishop);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -597,7 +597,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialQueen);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -617,7 +617,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -637,7 +637,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -657,7 +657,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -680,7 +680,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e1", ActionType.Move));
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -703,7 +703,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "a1", ActionType.Move));
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -721,7 +721,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canQueensideCastle);
         }
@@ -741,7 +741,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canQueensideCastle);
         }
@@ -761,7 +761,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canQueensideCastle);
         }
@@ -779,7 +779,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -797,7 +797,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(rook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -817,7 +817,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialKnight);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -837,7 +837,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialBishop);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -857,7 +857,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(initialQueen);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -877,7 +877,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyBishop);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -897,7 +897,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -917,7 +917,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(rook);
             gameboard.Board.SetSquare(enemyRook);
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -941,7 +941,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(king, "e8", ActionType.Move));
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -964,7 +964,7 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.PerformAction(new Action(rook, "a1", ActionType.Move));
 
-            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board, null);
+            var canQueensideCastle = king.CanQueensideCastle(gameboard.Board);
 
             Assert.False(canQueensideCastle);
         }
@@ -986,7 +986,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(blackKing);
             gameboard.Board.SetSquare(blackRook);
 
-            var canWhiteKingsideCastle = whiteKing.CanKingsideCastle(gameboard.Board, null);
+            var canWhiteKingsideCastle = whiteKing.CanKingsideCastle(gameboard.Board);
 
             Assert.True(canWhiteKingsideCastle);
         }
@@ -1008,7 +1008,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(blackKing);
             gameboard.Board.SetSquare(blackRook);
 
-            var canWhiteQueensideCastle = whiteKing.CanQueensideCastle(gameboard.Board, null);
+            var canWhiteQueensideCastle = whiteKing.CanQueensideCastle(gameboard.Board);
 
             Assert.True(canWhiteQueensideCastle);
         }

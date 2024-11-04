@@ -16,7 +16,7 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.False(isKingInCheck);
         }
@@ -32,7 +32,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new Rook(TeamColour.White, "e7"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.False(isKingInCheck);
         }
@@ -49,7 +49,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e5"));
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e7"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.False(isKingInCheck);
         }
@@ -65,7 +65,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e7"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.True(isKingInCheck);
         }
@@ -81,7 +81,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d5"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.True(isKingInCheck);
         }
@@ -97,7 +97,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e5"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.False(isKingInCheck);
         }
@@ -113,7 +113,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "a8"));
             gameboard.Board.SetSquare(new Bishop(TeamColour.Black, "h1"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.True(isKingInCheck);
         }
@@ -130,7 +130,7 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e7"));
             gameboard.Board.SetSquare(new Bishop(TeamColour.Black, "c6"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.True(isKingInCheck);
         }
@@ -149,13 +149,13 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(enemy);
 
-            var isKingInCheckByPawn = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheckByPawn = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             // pawn promotes to rook on e1, is now a threat to the king on e4
             var promoteToRook = new Action(enemy, "e1", ActionType.PawnPromoteRook);
             gameboard.PerformAction(promoteToRook);
 
-            var isKingInCheckByRook = gameboard.Board.IsKingInCheck(TeamColour.White, promoteToRook);
+            var isKingInCheckByRook = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.False(isKingInCheckByPawn);
             Assert.True(isKingInCheckByRook);
@@ -177,13 +177,13 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Queen(TeamColour.Black, "e8"));
             gameboard.Board.SetSquare(enemyKnight);
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             // knight moves out of the way for queen to check king
             var knightMove = new Action(enemyKnight, "c6", ActionType.Move);
             gameboard.PerformAction(knightMove);
 
-            var isKingNowInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, knightMove);
+            var isKingNowInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.False(isKingInCheck);
             Assert.True(isKingNowInCheck);
@@ -201,8 +201,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new King(TeamColour.White, "e4"));
             gameboard.Board.SetSquare(new King(TeamColour.Black, "d5"));
 
-            var isWhiteInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
-            var isBlackInCheck = gameboard.Board.IsKingInCheck(TeamColour.Black, null);
+            var isWhiteInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
+            var isBlackInCheck = gameboard.Board.IsKingInCheck(TeamColour.Black);
             var bothInCheck = isWhiteInCheck && isBlackInCheck;
 
             Assert.True(bothInCheck);
@@ -228,7 +228,7 @@ namespace ChessTests
 
             // rook now at e5, directly infront of king 
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, capturePawn);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             Assert.True(isKingInCheck);
         }
@@ -246,12 +246,12 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e5"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             var movedOutOfCheck = new Action(king, "d4", ActionType.Move);
             gameboard.PerformAction(movedOutOfCheck);
 
-            var isKingStillInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, movedOutOfCheck);
+            var isKingStillInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             // The king should be in check before the action, and out of check after the action
             Assert.True(isKingInCheck);
@@ -271,12 +271,12 @@ namespace ChessTests
             gameboard.Board.SetSquare(king);
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e5"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             var captureOutOfCheck = new Action(king, "e5", ActionType.Capture);
             gameboard.PerformAction(captureOutOfCheck);
 
-            var isKingStillInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, captureOutOfCheck);
+            var isKingStillInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             // The king should be in check before the action, and out of check after the action
             Assert.True(isKingInCheck);
@@ -297,12 +297,12 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "e7"));
             gameboard.Board.SetSquare(new Rook(TeamColour.Black, "d7"));
 
-            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, null);
+            var isKingInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
 
             var moveIntoAnotherCheck = new Action(king, "d5", ActionType.Move);
             gameboard.PerformAction(moveIntoAnotherCheck);
 
-            var isKingStillInCheck = gameboard.Board.IsKingInCheck(TeamColour.White, moveIntoAnotherCheck);
+            var isKingStillInCheck = gameboard.Board.IsKingInCheck(TeamColour.White);
             var stillInCheck = isKingInCheck && isKingStillInCheck;
 
             // The king should be in check before the action, and still in check after the action
