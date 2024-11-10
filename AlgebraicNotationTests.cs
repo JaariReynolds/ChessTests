@@ -1,13 +1,12 @@
-﻿using Chess.Classes.ConcretePieces;
+﻿using Chess.Classes;
+using Chess.Classes.ConcretePieces;
 using Chess.Types;
 
 namespace ChessTests
 {
     public class AlgebraicNotationTests
     {
-        // STANDARD PIECE MOVES
-
-        // Pawn moves
+        #region Standard Moves
         [Fact]
         public void WhitePawnMove()
         {
@@ -139,9 +138,9 @@ namespace ChessTests
 
             Assert.Equal("Qd4", action.AlgebraicNotation);
         }
+        #endregion
 
-        // STANDARD CAPTURES
-
+        #region Standard Captures
         // Pawn captures - includes the file the pawn is coming from 
         [Fact]
         public void WhitePawnCapture()
@@ -255,6 +254,168 @@ namespace ChessTests
 
             Assert.Equal("Qxa5", action.AlgebraicNotation);
         }
+        #endregion
+
+        #region Special Actions
+        [Fact]
+        public void KingCastle()
+        {
+            var king = new King(TeamColour.White, "e1");
+            var action = new Action(king, "g1", ActionType.KingsideCastle);
+
+            Assert.Equal("O-O", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void QueenCastle()
+        {
+            var king = new King(TeamColour.White, "e1");
+            var action = new Action(king, "c1", ActionType.QueensideCastle);
+
+            Assert.Equal("O-O-O", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void WhiteEnPassant()
+        {
+            var pawn = new Pawn(TeamColour.White, "a5");
+            var action = new Action(pawn, "b6", ActionType.PawnEnPassant);
+
+            Assert.Equal("axb6", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void BlackEnPassant()
+        {
+            var pawn = new Pawn(TeamColour.Black, "c4");
+            var action = new Action(pawn, "d3", ActionType.PawnEnPassant);
+
+            Assert.Equal("cxd3", action.AlgebraicNotation);
+        }
+        #endregion
+
+        #region Pawn Promotions
+        [Fact]
+        public void PawnPromoteKnight_Move()
+        {
+            var pawn = new Pawn(TeamColour.White, "a7");
+            var action = new Action(pawn, "a8", ActionType.PawnPromoteKnight);
+
+            Assert.Equal("a8=N", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteBishop_Move()
+        {
+            var pawn = new Pawn(TeamColour.White, "b7");
+            var action = new Action(pawn, "b8", ActionType.PawnPromoteBishop);
+
+            Assert.Equal("b8=B", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteRook_Move()
+        {
+            var pawn = new Pawn(TeamColour.White, "c7");
+            var action = new Action(pawn, "c8", ActionType.PawnPromoteRook);
+
+            Assert.Equal("c8=R", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteQueen_Move()
+        {
+            var pawn = new Pawn(TeamColour.White, "d7");
+            var action = new Action(pawn, "d8", ActionType.PawnPromoteQueen);
+
+            Assert.Equal("d8=Q", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteKnight_Capture()
+        {
+            var pawn = new Pawn(TeamColour.White, "d7");
+            var enemyBishop = new Bishop(TeamColour.Black, "e8");
+            var action = new Action(pawn, "e8", ActionType.PawnPromoteKnight, enemyBishop.PieceValue);
+
+            Assert.Equal("dxe8=N", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteBishop_Capture()
+        {
+            var pawn = new Pawn(TeamColour.White, "e7");
+            var enemyBishop = new Bishop(TeamColour.Black, "f8");
+            var action = new Action(pawn, "f8", ActionType.PawnPromoteBishop, enemyBishop.PieceValue);
+
+            Assert.Equal("exf8=B", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteRook_Capture()
+        {
+            var pawn = new Pawn(TeamColour.White, "f7");
+            var enemyBishop = new Bishop(TeamColour.Black, "g8");
+            var action = new Action(pawn, "g8", ActionType.PawnPromoteRook, enemyBishop.PieceValue);
+
+            Assert.Equal("fxg8=R", action.AlgebraicNotation);
+        }
+
+        [Fact]
+        public void PawnPromoteQueen_Capture()
+        {
+            var pawn = new Pawn(TeamColour.White, "g7");
+            var enemyBishop = new Bishop(TeamColour.Black, "h8");
+            var action = new Action(pawn, "h8", ActionType.PawnPromoteQueen, enemyBishop.PieceValue);
+
+            Assert.Equal("gxh8=Q", action.AlgebraicNotation);
+        }
+        #endregion
+
+        #region Check and Checkmate suffixes
+        // A non-critical action should not add a check or mate suffix symbol
+        [Fact]
+        public void NoSuffixedAdded()
+        {
+            var rook = new Rook(TeamColour.White, "a4");
+            var action = new Action(rook, "a7", ActionType.Move);
+            TeamColour? checkedTeam = null;
+            TeamColour? matedTeam = null;
+
+            var updatedAlgebraicNotation = ChessUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
+
+            Assert.Equal("Ra7", action.AlgebraicNotation);
+            Assert.Equal("Ra7", updatedAlgebraicNotation);
+        }
+
+        [Fact]
+        public void CheckSuffixedAdded()
+        {
+            var rook = new Rook(TeamColour.White, "a4");
+            var action = new Action(rook, "a7", ActionType.Move);
+            TeamColour? checkedTeam = TeamColour.Black;
+            TeamColour? matedTeam = null;
+
+            var updatedAlgebraicNotation = ChessUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
+
+            Assert.Equal("Ra7", action.AlgebraicNotation);
+            Assert.Equal("Ra7+", updatedAlgebraicNotation);
+        }
+
+        [Fact]
+        public void MateSuffixedAdded()
+        {
+            var rook = new Rook(TeamColour.White, "a4");
+            var action = new Action(rook, "a7", ActionType.Move);
+            TeamColour? checkedTeam = TeamColour.Black;
+            TeamColour? matedTeam = null;
+
+            var updatedAlgebraicNotation = ChessUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
+
+            Assert.Equal("Ra7", action.AlgebraicNotation);
+            Assert.Equal("Ra7+", updatedAlgebraicNotation);
+        }
+        #endregion
 
         // Ensuring that identical algebraic notations are considered equal
         [Fact]
