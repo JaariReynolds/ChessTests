@@ -1,6 +1,6 @@
-﻿using Chess.Classes;
-using Chess.Classes.ConcretePieces;
+﻿using Chess.Classes.ConcretePieces;
 using Chess.Types;
+using ChessLogic.Classes;
 
 namespace ChessTests
 {
@@ -382,7 +382,7 @@ namespace ChessTests
             TeamColour? checkedTeam = null;
             TeamColour? matedTeam = null;
 
-            var updatedAlgebraicNotation = ChessUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
+            var updatedAlgebraicNotation = AlgebraicNotationUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
 
             Assert.Equal("Ra7", action.AlgebraicNotation);
             Assert.Equal("Ra7", updatedAlgebraicNotation);
@@ -396,7 +396,7 @@ namespace ChessTests
             TeamColour? checkedTeam = TeamColour.Black;
             TeamColour? matedTeam = null;
 
-            var updatedAlgebraicNotation = ChessUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
+            var updatedAlgebraicNotation = AlgebraicNotationUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
 
             Assert.Equal("Ra7", action.AlgebraicNotation);
             Assert.Equal("Ra7+", updatedAlgebraicNotation);
@@ -410,7 +410,7 @@ namespace ChessTests
             TeamColour? checkedTeam = TeamColour.Black;
             TeamColour? matedTeam = null;
 
-            var updatedAlgebraicNotation = ChessUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
+            var updatedAlgebraicNotation = AlgebraicNotationUtils.AddAlgebraicNotationSuffix(action.AlgebraicNotation, checkedTeam, matedTeam);
 
             Assert.Equal("Ra7", action.AlgebraicNotation);
             Assert.Equal("Ra7+", updatedAlgebraicNotation);
