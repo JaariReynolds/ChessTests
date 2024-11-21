@@ -128,9 +128,10 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.White, "d5");
+            var obstructingPawn = new Pawn(TeamColour.White, "d3");
 
             gameboard.Board.SetSquare(rook);
-            gameboard.Board.SetSquare(new Rook(TeamColour.White, "d3"));
+            gameboard.Board.SetSquare(obstructingPawn);
 
             var dict = gameboard.CalculateTeamActions(TeamColour.White);
             var actual = new List<Action>();
@@ -164,10 +165,11 @@ namespace ChessTests
         {
             var gameboard = new Gameboard();
             var rook = new Rook(TeamColour.Black, "d5");
+            var obstructingPawn = new Pawn(TeamColour.Black, "g5");
 
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(rook);
-            gameboard.Board.SetSquare(new Rook(TeamColour.Black, "g5"));
+            gameboard.Board.SetSquare(obstructingPawn);
 
             var dict = gameboard.CalculateTeamActions(TeamColour.Black);
             var actual = new List<Action>();
