@@ -14,11 +14,8 @@ namespace ChessTests
 
             gameboard.Board.SetSquare(king);
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -44,11 +41,8 @@ namespace ChessTests
             gameboard.SwapTurns();
             gameboard.Board.SetSquare(king);
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.Black);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.Black)
+                .OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -76,11 +70,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c5"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -105,11 +96,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "d4"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -134,11 +122,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e5"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "e4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -163,11 +148,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c5"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.White, "c4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -192,11 +174,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d6"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e6"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -222,11 +201,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "d4"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -254,11 +230,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e5"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "e4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
@@ -285,11 +258,8 @@ namespace ChessTests
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c5"));
             gameboard.Board.SetSquare(new Pawn(TeamColour.Black, "c4"));
 
-            var dict = gameboard.CalculateTeamActions(TeamColour.White);
-            var actual = new List<Action>();
-
-            if (dict.TryGetValue(king, out var kingActions))
-                actual = kingActions.OrderBy(a => a.ToString()).ToList();
+            var actual = gameboard.CalculateTeamActions(TeamColour.White)
+                .Where(a => a.Piece == king).OrderBy(a => a.ToString());
 
             var expected = new List<Action>
             {
