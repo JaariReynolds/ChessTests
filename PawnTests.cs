@@ -1,19 +1,11 @@
 using Chess.Classes;
 using Chess.Classes.ConcretePieces;
 using Chess.Types;
-using ChessLogic.Classes;
 
 namespace ChessTests
 {
     public class PawnTests
     {
-
-        // Setup before some Pawn tests required as GameStateManager is a single instance that should not carry over into other tests 
-        public PawnTests()
-        {
-            GameStateManager.Instance.Reset();
-        }
-
         /// <summary>
         /// A white pawn can advance 1 or 2 squares as their first action
         /// </summary>
